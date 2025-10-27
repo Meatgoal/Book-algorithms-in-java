@@ -1,0 +1,42 @@
+package com.mycompany.bigo;
+
+import java.util.*;
+import java.util.Scanner;
+
+public class BigO {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Ask the user for the number of elements to test
+        System.out.println("Enter the number of elements for the BigO test:");
+        int length = sc.nextInt();
+
+        // Create an array of given size and fill it with sequential numbers
+        int[] data = new int[length];
+        for (int i = 0; i < length; i++) {
+            data[i] = i;
+        }
+
+        int target = length - 1; // Target value to search (last element)
+
+        long start, end; // Variables to store start and end times in nanoseconds
+
+        // -------- Linear Search O(n) --------
+        start = System.nanoTime(); // Start timer
+        for (int i = 0; i < data.length; i++) {
+            if (data[i] == target) {
+                break; // Stop when the target is found
+            }
+        }
+        end = System.nanoTime(); // End timer
+        System.out.println("Linear search time: " + (end - start) + " ns");
+
+        // -------- Binary Search O(log n) --------
+        start = System.nanoTime(); // Start timer
+        int result = Arrays.binarySearch(data, target); // Perform binary search
+        end = System.nanoTime(); // End timer
+        System.out.println("Binary search time: " + (end - start) + " ns");
+        System.out.println("Binary search result index: " + result);
+
+    }
+}
